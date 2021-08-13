@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
+using UnityEngine.UI;
 public class RunawayManManager : MonoBehaviour
 {
     [SerializeField] LayerMask blockLayer;
@@ -16,12 +16,15 @@ public class RunawayManManager : MonoBehaviour
     DIRECTION_TYPE direction = DIRECTION_TYPE.STOP;
 
     Rigidbody2D rigidbody2D;
-    public float speed;
+    float speed;
     float jumpPower = 400;
 
-    public float time = 0;
+    float time = 0;
     public static float score;
     public static bool isClear = false;
+
+    public Text scoreText;
+
     void Start()
     {
         isClear = false;
@@ -63,6 +66,8 @@ public class RunawayManManager : MonoBehaviour
             Debug.Log("壁に当たる");
             transform.position = new Vector2(8.9f, transform.position.y);
         }
+        score = (int)(8 * time);
+        scoreText.text = score.ToString();
     }
 
     private void FixedUpdate()
@@ -93,8 +98,8 @@ public class RunawayManManager : MonoBehaviour
     }
     bool IsGround()
     {
-        Vector3 leftStartPoint = transform.position - Vector3.right * 0.2f;
-        Vector3 rightStartPoint = transform.position + Vector3.right * 0.2f;
+        Vector3 leftStartPoint = transform.position - Vector3.right * 0.3f;
+        Vector3 rightStartPoint = transform.position + Vector3.right * 0.3f;
         Vector3 endPoint = transform.position - Vector3.up * 0.1f;
         Debug.DrawLine(leftStartPoint, endPoint);
         Debug.DrawLine(rightStartPoint, endPoint);

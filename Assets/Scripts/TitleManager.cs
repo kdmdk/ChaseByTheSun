@@ -15,10 +15,12 @@ public class TitleManager : MonoBehaviour
 
     private void Update()
     {
+        /*
         if (Input.GetKey(KeyCode.Return))
         {
             SceneManager.LoadScene("Main");
         }
+        */
     }
     public void OnClickStart()
     {
